@@ -68,14 +68,14 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
   lancement_Firebase:
-    name: Deploy on firebase
-    build_and_preview:
-      if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+    name: Deploiement Firebase
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v2
-        - run: npm ci && npm run build
-        - uses: FirebaseExtended/action-hosting-deploy@v0
+        - name: Checkout
+          uses: actions/checkout@v2
+
+        - name: Deploiement
+          uses: FirebaseExtended/action-hosting-deploy@v0
           with:
             repoToken: '${{ secrets.GITHUB_TOKEN }}'
             firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEVOPSTP }}'
