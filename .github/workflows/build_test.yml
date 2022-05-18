@@ -97,5 +97,4 @@ jobs:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
           username: "Mon Bot qui marche trop bien"
-          args: The ${{ github.event_name }} event triggered first step.
-          message: "Let's gooooooooooooooo!!!!!!!!!!!!!."
+          args: "Let's gooooooooooooooo!!!!!!!!!!!!!."

@@ -1,14 +1,11 @@
-# project_DevOps
+#TP_DEVOPS Paul Ripault && Alexandre Lairie
 
-first : clone the project
+Ce repository a été créer afin de contenir le rendu du tp devops réalisé le 18/05/2022.
 
-second : cd project_DevOps puis npm i
+### Environnements :
 
-thrid : launch test unit with npm run test
-
-
-AIDE POUR GITHUB : https://github.blog/2022-02-02-build-ci-cd-pipeline-github-actions-four-steps/
-
-AIDE POUR GITLAB : https://blog.eleven-labs.com/fr/introduction-gitlab-ci/
+Le site de test : https://devopstp.web.app/
 
 ### Documentation
+
+Vous pouvez trouver le résumé du projet à l'adresse ci-dessous : https://paulripault.github.io/
