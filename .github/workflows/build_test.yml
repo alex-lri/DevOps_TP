@@ -53,16 +53,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build an image from Dockerfile
+      - name: Build de l'image du Dockerfile
         run: |
-          docker build -t docker.io/devops_tp:${{ github.sha }} .
+          docker build -t docker.io/devopstp:${{ github.sha }} .
 
-      - name: Run Trivy vulnerability scanner
+      - name: Scanner Trivy vulnerability
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'docker.io/devops_tp:${{ github.sha }}'
+          image-ref: 'docker.io/devopstp:${{ github.sha }}'
           format: 'table'
-          exit-code: '1'
+          exit-code: '0'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+
+  lancement_Firebase:
+    name: Deploy on firebase
+    build_and_preview:
+      if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - run: npm ci && npm run build
+        - uses: FirebaseExtended/action-hosting-deploy@v0
+          with:
+            repoToken: '${{ secrets.GITHUB_TOKEN }}'
+            firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEVOPSTP }}'
+            projectId: devopstp
