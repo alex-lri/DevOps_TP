@@ -5,7 +5,16 @@ COPY . /app
 WORKDIR /app
 
 RUN npm install
-RUN yum -y install wget
+
+RUN apt-get update && apt-get install -
+    rsyslog \
+    which \
+    tar \
+    hostname \
+    net-tools \
+    wget \
+ && rm -rf /var/lib/apt/lists/*
+ 
 RUN aquasec/trivy image python:3.4-alpine
 
 # RUN npm run build
