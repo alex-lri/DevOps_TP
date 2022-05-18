@@ -1,22 +1,21 @@
-name: Trivy Dependency Scanner
-
+name: Trivy
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-
 jobs:
   build:
-    name: Scan
-    runs-on: ubuntu-latest
+    name: Build
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      
       - name: Build an image from Dockerfile
         run: |
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
-
+      
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -25,4 +24,4 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
-          severity: 'CRITICAL'
+          severity: 'CRITICAL,HIGH'
