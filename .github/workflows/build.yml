@@ -1,16 +1,25 @@
 
-on: push
-name: Main Workflow
+
+on:
+  # Trigger analysis when pushing in master or pull requests, and when creating
+  # a pull request.
+  push:
+    branches:
+      - main
+  pull_request:
+      types: [opened, synchronize, reopened]
+name: Sonarcloud Workflow
 jobs:
-  sonarQubeTrigger:
-    name: SonarQube Trigger
+  sonarcloud:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: SonarQube Scan
-      uses: kitabisa/sonarqube-action@v1.1.0
+    - uses: actions/checkout@v2
       with:
-        projectKey: "alex-lri_DevOps_TP"
-        projectName: "DevOps_TP"
-        host: ${{ secrets.SONARQUBE_HOST }}
-        login: ${{ secrets.SONARQUBE_TOKEN }}
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        projectBaseDir: my-custom-directory
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
