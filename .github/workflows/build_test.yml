@@ -69,6 +69,7 @@ jobs:
 
   lancement_Firebase:
     name: Deploiement Firebase
+    needs: [tests_unitaires, tests_Sonarcloud, tests_Trivy]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
