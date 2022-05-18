@@ -11,15 +11,8 @@ jobs:
   sonarcloud:
     runs-on: ubuntu-latest
     steps:
+      - name: Clone Repository
       - uses: actions/checkout@v2
-        with:
-          # Disabling shallow clone is recommended for improving relevancy of reporting
-          projectBaseDir: DevOps_TP
-          args: >
-            -Dsonar.organization=devops-ripault-lairie
-            -Dsonar.projectKey=alex-lri_DevOps_TP
-            -Dsonar.verbose=true
-          fetch-depth: 0
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
