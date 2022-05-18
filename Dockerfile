@@ -5,7 +5,7 @@ COPY . /app
 WORKDIR /app
 
 RUN npm install
-RUN yum -y install wget
+RUN yum install -y wget
 RUN aquasec/trivy image python:3.4-alpine
 
 # RUN npm run build
