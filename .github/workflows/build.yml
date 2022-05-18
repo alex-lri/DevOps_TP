@@ -16,8 +16,8 @@ jobs:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           projectBaseDir: DevOps_TP
           args: >
-            -Dsonar.organization=alex-lri
-            -Dsonar.projectKey=devops-ripault-lairie
+            -Dsonar.organization=devops-ripault-lairie
+            -Dsonar.projectKey=alex-lri_DevOps_TP
             -Dsonar.verbose=true
           fetch-depth: 0
       - name: SonarCloud Scan
